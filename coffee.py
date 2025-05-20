@@ -36,3 +36,22 @@ class Coffee:
         
 # c1= Coffee("White")
 # print(c1)
+
+
+@classmethod
+def most_aficionado(cls, coffee):
+    customer_spend = {}
+
+
+    for order in Order.all:
+
+
+        if order.coffee == coffee:
+            customer_spend[order.customer] = customer_spend.get(order.customer, 0) + order.price
+
+
+
+    if not customer_spend:
+        return None
+
+    return max(customer_spend, key=customer_spend.get)
